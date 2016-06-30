@@ -59,6 +59,7 @@ public class FlowLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
+
                 final LayoutParams lp = (LayoutParams) child.getLayoutParams();
                 child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST), childHeightMeasureSpec);
                 final int childw = child.getMeasuredWidth();
@@ -120,4 +121,36 @@ public class FlowLayout extends ViewGroup {
             }
         }
     }
+
+    /**
+     * Returns a new set of layout parameters based on the supplied attributes set.
+     *
+     * @param attrs the attributes to build the layout parameters from
+     *
+     * @return an instance of {@link android.view.ViewGroup.LayoutParams} or one
+     *         of its descendants
+     */
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LayoutParams(1, 1);
+    }
+
+    /**
+     * Returns a safe set of layout parameters based on the supplied layout params.
+     * When a ViewGroup is passed a View whose layout params do not pass the test of
+     * {@link #checkLayoutParams(android.view.ViewGroup.LayoutParams)}, this method
+     * is invoked. This method should return a new set of layout params suitable for
+     * this ViewGroup, possibly by copying the appropriate attributes from the
+     * specified set of layout params.
+     *
+     * @param p The layout parameters to convert into a suitable set of layout parameters
+     *          for this ViewGroup.
+     *
+     * @return an instance of {@link android.view.ViewGroup.LayoutParams} or one
+     *         of its descendants
+     */
+    protected LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+        return new LayoutParams(1, 1);
+    }
+
+
 }
